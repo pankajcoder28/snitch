@@ -37,7 +37,7 @@ const Register = () => {
       contact: formData.contactNumber,
       role: formData.isSeller
     })
-    user = req.user
+     user = req.user
     
     if(user.role == "buyer"){
         navigate("/")

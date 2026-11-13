@@ -33,7 +33,7 @@ export const authenticateSeller = async (req,res,next)=>{
     const token = req.cookies.token
 
     if(!token){
-        res.status(401).json({message: "unauthorised"})
+        return res.status(401).json({message: "unauthorised"})
     }
 
     try {
@@ -42,11 +42,11 @@ export const authenticateSeller = async (req,res,next)=>{
        const user = await userModel.findById(decoded.id)
         
        if(!user){
-            res.status(401).json({message: "unauthorised"})
+            return res.status(401).json({message: "unauthorised"})
        }
 
        if(decoded.role !== 'seller'){
-            res.status(403).json({message: 'forbidden'})
+            return res.status(403).json({message: 'forbidden'})
        }
 
        req.user = user

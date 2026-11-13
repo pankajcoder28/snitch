@@ -1,5 +1,6 @@
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import {createProduct,getAllProduct,getSellerProduct,getProductById} from '../services/product.api.js'
+import {createProduct,getAllProduct,getSellerProduct,getProductById,createProductVariant,updateProductVariantStock} from '../services/product.api.js'
 import { setsellerProducts,setproducts } from "../state/product.slice.js";
 
 export const useProduct = ()=>{
@@ -23,10 +24,20 @@ export const useProduct = ()=>{
         return data.product
     }
 
-    async function handleGetProductById(productId){
+    const handleGetProductById = useCallback(async (productId)=>{
         const data = await getProductById(productId);
+        return data.product
+    }, [])
+
+    async function handleCreateProductVariant(productId, variant){
+        const data = await createProductVariant(productId, variant)
         return data.product
     }
 
-    return{ handleCreateProduct, handleGetSellerProduct , handleGetAllProducts , handleGetProductById }
+    async function handleUpdateProductVariantStock(productId, variantId, stock){
+        const data = await updateProductVariantStock(productId, variantId, stock)
+        return data.product
+    }
+
+    return{ handleCreateProduct, handleGetSellerProduct , handleGetAllProducts , handleGetProductById, handleCreateProductVariant, handleUpdateProductVariantStock }
 }

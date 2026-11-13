@@ -37,12 +37,12 @@ const Navbar = ({ user, navigate }) => (
           {user.isSeller && (
             <button
               onClick={() => navigate('/seller/dashboard')}
-              className="px-[18px] py-2 bg-transparent border border-[#1E3A5F] rounded-[10px] text-xs font-semibold tracking-[0.1em] uppercase text-[#1E3A5F] cursor-pointer transition-all duration-200 hover:bg-[#EFF6FF]"
+              className="px-4.5 py-2 bg-transparent border border-[#1E3A5F] rounded-[10px] text-xs font-semibold tracking-[0.1em] uppercase text-[#1E3A5F] cursor-pointer transition-all duration-200 hover:bg-[#EFF6FF]"
             >
               Dashboard
             </button>
           )}
-          <div className="w-[34px] h-[34px] rounded-full bg-[#1E3A5F] text-white flex items-center justify-center text-[13px] font-bold tracking-wide">
+          <div className="w-[34px] h-8.5 rounded-full bg-[#1E3A5F] text-white flex items-center justify-center text-[13px] font-bold tracking-wide">
             {(user.name || user.email || 'U')[0].toUpperCase()}
           </div>
         </>
